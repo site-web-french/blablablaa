@@ -1,17 +1,1051 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Site Malicieux</title>
-    <link rel="stylesheet" href="style.css">
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cahier de révision — Français 3e</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #faf6e9;
+    --paper-line: #d9d2bd;
+    --margin-red: #c23b22;
+    --ink: #1b2a4a;
+    --ink-soft: #3c4f72;
+    --green: #2f6b4f;
+    --red: #c23b22;
+    --gold: #b8860b;
+    --card: #fffdf6;
+    --shadow: rgba(27,42,74,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px, transparent 27px,
+        var(--paper-line) 27px, var(--paper-line) 28px
+      ),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader', Georgia, serif;
+    min-height:100vh;
+    padding:0 0 60px 0;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    top:0; bottom:0; left:54px;
+    width:2px;
+    background:var(--margin-red);
+    opacity:0.45;
+    z-index:0;
+  }
+  @media (max-width:600px){
+    body::before{ left:28px; }
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 28px 0 76px;
+    position:relative;
+    z-index:1;
+  }
+  @media (max-width:600px){
+    .wrap{ padding:24px 16px 0 44px; }
+  }
+
+  header.top{
+    margin-bottom:22px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    opacity:.75;
+  }
+  h1{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:54px;
+    line-height:1;
+    margin:6px 0 4px 0;
+    color:var(--margin-red);
+    transform:rotate(-1deg);
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:54ch;
+  }
+
+  /* ---- Cards ---- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--paper-line);
+    border-radius:6px;
+    box-shadow:0 6px 18px var(--shadow);
+    padding:26px 26px 22px 26px;
+    margin-bottom:24px;
+  }
+  @media (max-width:600px){
+    .card{ padding:18px 16px 16px 16px; }
+  }
+
+  /* ---- Setup screen ---- */
+  .chap-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 14px 0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .chap-title .selectall{
+    margin-left:auto;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:none;
+    letter-spacing:0;
+    color:var(--margin-red);
+    background:none;
+    border:none;
+    text-decoration:underline;
+    cursor:pointer;
+    padding:0;
+  }
+  .chapters{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 18px;
+  }
+  @media (max-width:560px){
+    .chapters{ grid-template-columns:1fr; }
+  }
+  .chap-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:15.5px;
+    padding:6px 4px;
+    border-radius:4px;
+    cursor:pointer;
+  }
+  .chap-row:hover{ background:#f4efe0; }
+  .chap-row input{
+    margin-top:4px;
+    width:17px; height:17px;
+    accent-color:var(--margin-red);
+    flex-shrink:0;
+  }
+  .chap-row .count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    opacity:.7;
+  }
+
+  .num-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .num-row label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+  }
+  select{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    padding:7px 10px;
+    border:1px solid var(--paper-line);
+    border-radius:4px;
+    background:var(--paper);
+    color:var(--ink);
+  }
+
+  .pool-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:10px;
+    opacity:.8;
+  }
+
+  /* ---- Stamp button ---- */
+  .stamp-btn{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:26px;
+    color:var(--green);
+    background:var(--card);
+    border:3px solid var(--green);
+    border-radius:50% / 40%;
+    padding:14px 30px;
+    cursor:pointer;
+    transform:rotate(-2deg);
+    transition:transform .15s ease, background .15s ease;
+    display:inline-block;
+    margin-top:24px;
+  }
+  .stamp-btn:hover{ transform:rotate(0deg) scale(1.03); background:#f1f8f3; }
+  .stamp-btn:disabled{
+    opacity:.4; cursor:not-allowed; transform:none;
+  }
+  .stamp-btn.small{
+    font-size:20px;
+    padding:9px 20px;
+  }
+
+  /* ---- Quiz screen ---- */
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+    flex-wrap:wrap;
+  }
+  .progress-track{
+    flex:1;
+    min-width:120px;
+    height:6px;
+    background:var(--paper-line);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--margin-red);
+    width:0%;
+    transition:width .25s ease;
+  }
+  .score-pill{
+    display:flex;
+    gap:10px;
+  }
+  .score-pill span{ white-space:nowrap; }
+  .ok-count{ color:var(--green); }
+  .bad-count{ color:var(--red); }
+
+  .q-chapter{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .q-text{
+    font-size:21px;
+    line-height:1.4;
+    margin:0 0 20px 0;
+    color:var(--ink);
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .opt-btn{
+    text-align:left;
+    font-family:'Newsreader', Georgia, serif;
+    font-size:16.5px;
+    color:var(--ink);
+    background:var(--paper);
+    border:1.5px solid var(--paper-line);
+    border-radius:6px;
+    padding:13px 16px;
+    cursor:pointer;
+    transition:border-color .12s ease, background .12s ease, transform .08s ease;
+    display:flex;
+    gap:10px;
+  }
+  .opt-btn .letter{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    flex-shrink:0;
+    width:18px;
+  }
+  .opt-btn:hover:not(:disabled){
+    border-color:var(--ink-soft);
+    background:#f4efe0;
+  }
+  .opt-btn:disabled{ cursor:default; }
+  .opt-btn.correct{
+    border-color:var(--green);
+    background:#eaf4ee;
+    color:var(--green);
+  }
+  .opt-btn.wrong{
+    border-color:var(--red);
+    background:#fbeae6;
+    color:var(--red);
+    text-decoration:line-through;
+  }
+
+  .feedback{
+    margin-top:18px;
+    padding:14px 16px;
+    border-radius:6px;
+    font-size:15px;
+    line-height:1.5;
+    display:none;
+  }
+  .feedback.show{ display:block; }
+  .feedback.good{ background:#eaf4ee; color:var(--green); border:1px solid #bcdcc8; }
+  .feedback.bad{ background:#fbeae6; color:var(--red); border:1px solid #f0c3b6; }
+  .feedback .mark{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:24px;
+    margin-right:6px;
+  }
+
+  .next-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:18px;
+  }
+
+  /* ---- Results screen ---- */
+  .results{
+    text-align:center;
+    padding:34px 20px;
+  }
+  .grade-stamp{
+    display:inline-block;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:64px;
+    color:var(--margin-red);
+    border:4px solid var(--margin-red);
+    border-radius:50%;
+    width:170px; height:170px;
+    line-height:162px;
+    transform:rotate(-4deg);
+    margin-bottom:18px;
+  }
+  .appreciation{
+    font-family:'Caveat', cursive;
+    font-size:30px;
+    color:var(--ink);
+    margin:4px 0 18px 0;
+  }
+  .breakdown{
+    text-align:left;
+    margin-top:26px;
+  }
+  .breakdown-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:8px 0;
+    border-bottom:1px dashed var(--paper-line);
+  }
+  .breakdown-row .bar-bg{
+    flex:1;
+    height:6px;
+    background:var(--paper-line);
+    border-radius:3px;
+    margin:0 12px;
+    overflow:hidden;
+  }
+  .breakdown-row .bar-fill{
+    height:100%;
+    background:var(--green);
+  }
+
+  .footer-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    opacity:.6;
+    text-align:center;
+    margin-top:30px;
+  }
+
+  .hidden{ display:none !important; }
+
+  /* focus visibility */
+  button:focus-visible, select:focus-visible, input:focus-visible{
+    outline:2px solid var(--margin-red);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
 </head>
-<body><div class="center" id="titre">
-  <h1 class="malicieux">Le Site Malicieux</h1>
-    <p class="malicieux">Le site malicieux trouvé dans une poubelle malicieuse avec le jus de poubelle bien resté à l'intérieur</p>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Brevet · 3e</div>
+    <h1>Réviser le français</h1>
+    <p class="subtitle">QCM tiré de tes cours (orthographe, conjugaison, grammaire, figures de style, méthode, œuvres). Questions et réponses mélangées à chaque partie.</p>
+  </header>
+
+  <!-- ===== SETUP SCREEN ===== -->
+  <section id="screen-setup" class="card">
+    <div class="chap-title">
+      Choisis tes chapitres
+      <button class="selectall" id="btn-toggle-all" type="button">tout désélectionner</button>
+    </div>
+    <div class="chapters" id="chapters-list"></div>
+
+    <div class="num-row">
+      <label for="num-questions">Nombre de questions</label>
+      <select id="num-questions">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="all">Toutes (max)</option>
+      </select>
+    </div>
+    <div class="pool-note" id="pool-note"></div>
+
+    <button class="stamp-btn" id="btn-start" type="button">Commencer ✓</button>
+  </section>
+
+  <!-- ===== QUIZ SCREEN ===== -->
+  <section id="screen-quiz" class="card hidden">
+    <div class="progress-row">
+      <span id="progress-label">Question 1/20</span>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="score-pill">
+        <span class="ok-count">✓ <span id="ok-count">0</span></span>
+        <span class="bad-count">✗ <span id="bad-count">0</span></span>
+      </div>
     </div>
 
-      <script src="script.js"></script>
+    <div class="q-chapter" id="q-chapter"></div>
+    <p class="q-text" id="q-text"></p>
+    <div class="options" id="options"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="next-row">
+      <button class="stamp-btn small hidden" id="btn-next" type="button">Suivante →</button>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS SCREEN ===== -->
+  <section id="screen-results" class="card hidden">
+    <div class="results">
+      <div class="grade-stamp" id="grade-stamp">—</div>
+      <div class="appreciation" id="appreciation"></div>
+      <p id="results-detail" style="color:var(--ink-soft); font-size:15px;"></p>
+
+      <div class="breakdown" id="breakdown"></div>
+
+      <button class="stamp-btn" id="btn-restart" type="button">Recommencer ↻</button>
+    </div>
+  </section>
+
+  <p class="footer-note">Fait à partir de tes cours de français · vérifie toujours avec ton cahier en cas de doute</p>
+</div>
+
+<script>
+/* ============================================================
+   BANQUE DE QUESTIONS
+   c = chapitre, q = question, o = 4 options (a = index de la bonne),
+   e = courte explication affichée après la réponse
+   ============================================================ */
+const CHAPTERS = [
+  {id:'orth',    label:'Orthographe (homophones)'},
+  {id:'acc',     label:'Accord du participe passé'},
+  {id:'passe',   label:'Temps du récit au passé'},
+  {id:'present', label:'Présent, passé composé, futur'},
+  {id:'subj',    label:'Le subjonctif'},
+  {id:'imper',   label:"L'impératif"},
+  {id:'phrase',  label:'Phrase complexe & propositions'},
+  {id:'liens',   label:'Liens logiques'},
+  {id:'modal',   label:'Les modalisateurs'},
+  {id:'style',   label:'Figures de style'},
+  {id:'metho',   label:'Vocabulaire & méthode'},
+  {id:'oeuvres', label:'Œuvres étudiées'}
+];
+
+const QUESTIONS = [
+/* ---------- ORTHOGRAPHE ---------- */
+{c:'orth', q:"Comment distingue-t-on « a » (verbe avoir) de « à » (préposition) ?",
+ o:["« a » peut être remplacé par « avait » ; « à » ne le peut pas","« a » peut être remplacé par « et » ; « à » ne le peut pas","« a » est toujours suivi d'un nom","Il n'existe aucun moyen de les distinguer"], a:0,
+ e:"« a » est le verbe avoir conjugué : on peut toujours le remplacer par « avait »."},
+{c:'orth', q:"Complète : « Elle ___ venue et a travaillé. »",
+ o:["a","à","est","et"], a:2,
+ e:"« venue » est un participe passé construit avec l'auxiliaire être : on écrit « est »."},
+{c:'orth', q:"Comment distingue-t-on « est » (verbe être) de « et » (conjonction) ?",
+ o:["« est » peut être remplacé par « était » ; « et » par « et puis »","Les deux mots sont interchangeables","« est » est toujours suivi d'un adjectif","« et » peut être remplacé par « était »"], a:0,
+ e:"« est » = était (verbe) ; « et » = et puis (mot de liaison)."},
+{c:'orth', q:"Quelle terminaison correspond au participe passé d'un verbe du 1er groupe (et non à son infinitif) ?",
+ o:["-er","-é","-ait","-ant"], a:1,
+ e:"« -é » est la terminaison du participe passé (« mangé »), « -er » celle de l'infinitif (« manger »)."},
+{c:'orth', q:"Pour vérifier si un verbe du 1er groupe se termine par « -é » ou « -er », par quel type de verbe peut-on le remplacer ?",
+ o:["Un verbe du 1er groupe à l'infinitif","Un verbe du 3e groupe comme « vendre » (vendu / vendre)","Un verbe à l'imparfait","Un verbe au futur"], a:1,
+ e:"« vendu »/« mordu » ont des formes différentes au participe passé et à l'infinitif, ce qui permet de trancher."},
+{c:'orth', q:"Quelle est la différence entre « s'est » et « c'est » ?",
+ o:["« s'est » est un pronom réfléchi devant l'auxiliaire être ; « c'est » est « cela » devant le verbe être","Les deux s'écrivent toujours pareil","« c'est » s'utilise seulement au pluriel","« s'est » ne s'utilise jamais avec un verbe pronominal"], a:0,
+ e:"« Il s'est lavé » (se laver) vs « C'est bien » (cela est bien)."},
+{c:'orth', q:"Complète : « Prends ___ livres : ceux-là. »",
+ o:["ses","ces","sait","c'est"], a:1,
+ e:"« ces » est un déterminant démonstratif, utilisé pour montrer quelque chose."},
+{c:'orth', q:"« ses » et « sa » sont des déterminants…",
+ o:["démonstratifs","possessifs","indéfinis","interrogatifs"], a:1,
+ e:"Ils expriment la possession : « sa veste » = la sienne."},
+{c:'orth', q:"Que signifie « ça » dans « Ça me rappelle quelque chose » ?",
+ o:["sa","cela","ces","c'est"], a:1,
+ e:"« ça » est un pronom démonstratif, équivalent de « cela »."},
+{c:'orth', q:"Le pronom « on » se conjugue…",
+ o:["à la 1ère personne du pluriel","à la 3e personne du singulier","à la 2e personne du singulier","il ne se conjugue pas"], a:1,
+ e:"« On mange à la cantine » : « on » se comporte comme « il/elle »."},
+
+/* ---------- ACCORD DU PARTICIPE PASSÉ ---------- */
+{c:'acc', q:"Avec l'auxiliaire « être », le participe passé s'accorde…",
+ o:["avec le COD placé avant le verbe","avec le sujet, en genre et en nombre","il ne s'accorde jamais","avec le complément du nom"], a:1,
+ e:"« Elles sont venues » : accord avec le sujet « elles »."},
+{c:'acc', q:"Avec l'auxiliaire « avoir », le participe passé s'accorde-t-il avec le sujet ?",
+ o:["Oui, toujours","Non, jamais","Seulement au féminin","Seulement à la 3e personne"], a:1,
+ e:"« Elles ont travaillé » : pas d'accord avec « elles » sujet."},
+{c:'acc', q:"Avec l'auxiliaire « avoir », quand le participe passé s'accorde-t-il avec le COD ?",
+ o:["Quand le COD est placé après le verbe","Quand le COD est placé avant le verbe","Jamais","Seulement si le COD est un nom propre"], a:1,
+ e:"« Les devoirs qu'elle a faits » : COD « qu' » (= les devoirs) placé avant → accord."},
+{c:'acc', q:"« Elles ont fait leurs devoirs. Elles les ont faits. » Pourquoi « faits » prend-il un -s ?",
+ o:["Parce que le sujet « elles » est féminin pluriel","Parce que « les » est un COD placé avant le verbe et reprend « leurs devoirs » (masc. pluriel)","Parce que c'est une règle sans exception","Parce que « faits » est un adjectif qualificatif"], a:1,
+ e:"Le pronom « les » remplace « leurs devoirs » : masculin pluriel, placé avant → accord en « -s »."},
+{c:'acc', q:"Le participe passé construit avec « avoir » s'accorde-t-il quand le COD est le pronom « en » ?",
+ o:["Oui, toujours","Non, il reste invariable","Seulement au pluriel","Seulement en début de phrase"], a:1,
+ e:"« Des obstacles, il en a franchi beaucoup » : « franchi » reste invariable."},
+{c:'acc', q:"Les participes passés « fait » et « laissé » suivis d'un infinitif s'accordent-ils avec le COD ?",
+ o:["Oui, toujours","Non, ils restent invariables","Seulement au féminin","Seulement avec l'auxiliaire être"], a:1,
+ e:"« Elle s'est fait raccompagner » : « fait » reste invariable devant un infinitif."},
+{c:'acc', q:"« Les artistes que j'ai entendus interpréter la chanson… » Pourquoi « entendus » s'accorde-t-il ?",
+ o:["Parce que « les artistes » (COD avant le verbe) font eux-mêmes l'action exprimée par l'infinitif","Parce que c'est un futur antérieur","Parce que « que » s'accorde toujours","Parce que le verbe est à la forme passive"], a:0,
+ e:"Le COD placé avant est aussi le sujet de l'infinitif « interpréter » → accord."},
+{c:'acc', q:"« La chanson que j'ai entendu interpréter par les artistes… » Pourquoi « entendu » reste-t-il invariable ?",
+ o:["Parce que « chanson » est féminin","Parce que ce n'est pas « la chanson » qui interprète, mais « les artistes »","Parce que le COD est placé après le verbe","Parce qu'il n'y a pas de COD"], a:1,
+ e:"Le COD placé avant n'est pas le sujet de l'infinitif → pas d'accord."},
+{c:'acc', q:"Pour trouver le COD d'un verbe, quelle question pose-t-on ?",
+ o:["Qui est-ce qui + verbe ?","Verbe + qui / quoi ?","Verbe + à qui / à quoi ?","Comment + verbe ?"], a:1,
+ e:"« Il fait ses devoirs » → il fait quoi ? ses devoirs (COD)."},
+{c:'acc', q:"« Des obstacles disposés sur le parcours, voilà ce que Simon a franchi. » Pourquoi « franchi » reste invariable ?",
+ o:["Parce que le COD est le pronom démonstratif « ce »","Parce que « obstacles » est au pluriel","Parce que le verbe est au passé simple","C'est une erreur, il devrait s'accorder"], a:0,
+ e:"Quand le COD est « ce », le participe passé reste invariable."},
+
+/* ---------- TEMPS DU RÉCIT AU PASSÉ ---------- */
+{c:'passe', q:"Quelle est la valeur principale du passé simple dans un récit ?",
+ o:["Il exprime des actions de second plan, non limitées dans le temps","Il exprime des actions de premier plan qui font avancer le récit","Il exprime uniquement des habitudes","Il ne s'utilise qu'à l'oral"], a:1,
+ e:"Le passé simple fait avancer l'histoire : ce sont les actions importantes."},
+{c:'passe', q:"Quelle est la valeur principale de l'imparfait dans un récit ?",
+ o:["Des actions de premier plan, limitées dans le temps","Décrire le cadre/les personnages, ou une action non limitée dans le temps (second plan)","Uniquement le futur proche","Il ne s'utilise qu'avec « si »"], a:1,
+ e:"L'imparfait sert de toile de fond : description, habitude, situation initiale."},
+{c:'passe', q:"Comment se forme le plus-que-parfait ?",
+ o:["Être/avoir au présent + participe passé","Être/avoir à l'imparfait + participe passé","Être/avoir au passé simple + participe passé","Radical + -ais, -ais, -ait…"], a:1,
+ e:"Ex : « Ils avaient travaillé. »"},
+{c:'passe', q:"Comment se forme le passé antérieur ?",
+ o:["Être/avoir à l'imparfait + participe passé","Être/avoir au passé simple + participe passé","Être/avoir au présent + participe passé","Radical du futur + terminaisons de l'imparfait"], a:1,
+ e:"Ex : « Il eut travaillé. »"},
+{c:'passe', q:"Quelle est la principale différence de valeur entre plus-que-parfait et passé antérieur ?",
+ o:["Ils sont rigoureusement identiques","Le plus-que-parfait peut exprimer une action de second plan ; le passé antérieur, une action de premier plan","Le passé antérieur n'existe qu'au pluriel","Le plus-que-parfait ne s'utilise jamais avec « quand »"], a:1,
+ e:"Ex : « Quand minuit eut sonné, je me levai » (passé antérieur, 1er plan)."},
+{c:'passe', q:"Comment se forme le conditionnel présent ?",
+ o:["Radical du futur + terminaisons de l'imparfait","Radical du présent + terminaisons du futur","Être/avoir à l'imparfait + participe passé","Radical de l'infinitif + -ai, -as, -a…"], a:0,
+ e:"Ex : « finir » → je finir-ais (radical du futur + terminaison imparfait)."},
+{c:'passe', q:"Dans un récit au passé, quelle est une valeur du conditionnel présent ?",
+ o:["Il exprime systématiquement un ordre","Il équivaut à un futur dans le passé (action postérieure à l'imparfait/passé simple)","Il exprime uniquement une vérité scientifique","Il ne peut jamais exprimer une condition"], a:1,
+ e:"« Il dit qu'il finirait ses devoirs le soir même » : « finirait » est postérieur à « dit »."},
+{c:'passe', q:"Quelle terminaison caractérise le passé simple des verbes du 1er groupe (et « aller ») ?",
+ o:["-is, -is, -it…","-ai, -as, -a, -âmes, -âtes, -èrent","-us, -us, -ut…","-ins, -ins, -int…"], a:1,
+ e:"Ex : « il alla, nous allâmes… »"},
+{c:'passe', q:"Quel exemple illustre l'imparfait exprimant une habitude ?",
+ o:["« Il était en train de travailler quand sa mère arriva. »","« Chaque jour, il prenait le bus à 7h30. »","« Tout à coup, on entendit un cri. »","« Il aurait travaillé sérieusement. »"], a:1,
+ e:"Le complément « chaque jour » indique la répétition, valeur d'habitude de l'imparfait."},
+{c:'passe', q:"Dans « Quand il eut tout avoué, il s'effondra. », à quel temps est conjugué « eut… avoué » ?",
+ o:["Plus-que-parfait","Passé antérieur","Conditionnel passé","Passé composé"], a:1,
+ e:"Auxiliaire avoir au passé simple (« eut ») + participe passé = passé antérieur."},
+
+/* ---------- PRÉSENT / PASSÉ COMPOSÉ / FUTUR ---------- */
+{c:'present', q:"Quand parle-t-on de « présent de narration » ?",
+ o:["Quand le présent est employé dans un texte au passé pour rendre l'action plus vivante","Quand il exprime une vérité scientifique","Quand il n'est utilisé que dans les dialogues","Quand il exprime un futur proche"], a:0,
+ e:"« Le cavalier galopait. Soudain, un obstacle se dresse devant lui » : effet de dramatisation."},
+{c:'present', q:"Quelle phrase illustre le présent de vérité générale ?",
+ o:["« Je travaille en ce moment. »","« La Terre tourne autour du Soleil. »","« Je reviens demain. »","« Il neige depuis quatre heures. »"], a:1,
+ e:"Un fait vrai à toutes les époques, typique du langage scientifique."},
+{c:'present', q:"Quelle phrase illustre le présent exprimant un futur proche ?",
+ o:["« Je reviens demain. »","« Il était grand et maigre. »","« Si elle travaillait, elle réussirait. »","« Il a fini son exercice. »"], a:0,
+ e:"« Je reviens » = « je vais revenir » : futur proche exprimé par un présent."},
+{c:'present', q:"Comment se forme le futur simple de l'indicatif ?",
+ o:["Radical du futur + -ai, -as, -a, -ons, -ez, -ont","Radical + terminaisons de l'imparfait","Être/avoir au présent + participe passé","Radical + -is, -is, -it…"], a:0,
+ e:"Ex : « chanter » → je chante-r-ai."},
+{c:'present', q:"Quel exemple illustre le futur simple exprimant un ordre ?",
+ o:["« Tu fermeras la porte avant de partir. »","« Je vous annonce que j'irai au lycée. »","« S'il pleut, il nous faudra rentrer. »","« Il neige depuis quatre heures. »"], a:0,
+ e:"Un futur à valeur d'impératif, plus atténué qu'un ordre direct."},
+{c:'present', q:"Comment se forme le passé composé ?",
+ o:["Être/avoir à l'imparfait + participe passé","Être/avoir au présent + participe passé","Radical du futur + terminaisons de l'imparfait","Être/avoir au passé simple + participe passé"], a:1,
+ e:"Ex : « Il a compris. Il est allé. »"},
+{c:'present', q:"Comment se forme le futur antérieur ?",
+ o:["Être/avoir au futur simple + participe passé","Être/avoir à l'imparfait + participe passé","Radical du futur + terminaisons de l'imparfait","Être/avoir au présent + participe passé"], a:0,
+ e:"Ex : « Il aura réussi. Elle sera arrivée. »"},
+{c:'present', q:"Quelle est la valeur du futur antérieur dans « Quand vous aurez fini cet exercice, vous irez chercher la correction. » ?",
+ o:["Une action antérieure à une autre action future","Une habitude passée","Une vérité générale","Un regret"], a:0,
+ e:"L'action « finir » précède l'action « aller chercher », toutes deux dans le futur."},
+
+/* ---------- LE SUBJONCTIF ---------- */
+{c:'subj', q:"En général, à partir de quelle base forme-t-on le radical du présent du subjonctif ?",
+ o:["La base de la 3e personne du pluriel du présent de l'indicatif","L'infinitif du verbe","Le radical du futur","La base de la 1ère personne du singulier de l'imparfait"], a:0,
+ e:"« Ils partent » → « que je parte »."},
+{c:'subj', q:"Quelles sont les terminaisons du présent du subjonctif ?",
+ o:["-e, -es, -e, -ions, -iez, -ent","-ais, -ais, -ait, -ions, -iez, -aient","-ai, -as, -a, -ons, -ez, -ont","-is, -is, -it, -îmes, -îtes, -irent"], a:0,
+ e:"Ex : « que je voie, que nous voyions, qu'ils voient »."},
+{c:'subj', q:"Comment se forme le subjonctif passé ?",
+ o:["Être/avoir au présent du subjonctif + participe passé","Être/avoir à l'imparfait + participe passé","Radical du subjonctif + terminaisons du passé simple","Être/avoir au futur + participe passé"], a:0,
+ e:"Ex : « que j'aie pris, que je sois venu(e) »."},
+{c:'subj', q:"Que peut exprimer le subjonctif employé seul, en proposition indépendante (« Qu'il sorte immédiatement ! ») ?",
+ o:["Une certitude absolue","L'injonction (un ordre)","Une description neutre","Une habitude passée"], a:1,
+ e:"Le subjonctif indépendant peut exprimer ordre, souhait, supposition, indignation."},
+{c:'subj', q:"Après quelle conjonction de subordination emploie-t-on le subjonctif ?",
+ o:["parce que","bien que","depuis que","si bien que"], a:1,
+ e:"« Bien que » exprime la concession et se construit avec le subjonctif."},
+{c:'subj', q:"Quelle est la conjugaison correcte de « être » au présent du subjonctif, 1ère personne du pluriel ?",
+ o:["nous sommes","nous soyons","nous étions","nous serons"], a:1,
+ e:"« être » a des terminaisons irrégulières au subjonctif : que je sois… que nous soyons."},
+
+/* ---------- L'IMPÉRATIF ---------- */
+{c:'imper', q:"À combien de personnes l'impératif se conjugue-t-il ?",
+ o:["Six personnes","Trois personnes (tu, nous, vous)","Une seule personne","Quatre personnes"], a:1,
+ e:"L'impératif n'existe qu'à ces trois personnes, sans pronom sujet exprimé."},
+{c:'imper', q:"L'impératif se conjugue-t-il avec un sujet exprimé ?",
+ o:["Oui, toujours","Non, sans sujet","Seulement à la 2e personne du pluriel","Seulement avec « tu »"], a:1,
+ e:"« Mange ! » et non « Tu manges ! »."},
+{c:'imper', q:"Comment écrit-on « Mange des légumes » suivi du pronom « en » ?",
+ o:["Mange-en","Manges-en","Mange en","Mangent-en"], a:1,
+ e:"Les verbes en -er prennent un -s devant « y » ou « en » à l'impératif."},
+{c:'imper', q:"Comment se forme l'impératif passé ?",
+ o:["Être/avoir à l'impératif présent + participe passé","Être/avoir au présent du subjonctif + participe passé","Radical + -e, -es, -e…","Être/avoir à l'imparfait + participe passé"], a:0,
+ e:"Ex : « Ayez terminé vos devoirs ce soir ! »"},
+{c:'imper', q:"Laquelle de ces valeurs l'impératif n'exprime-t-il PAS ?",
+ o:["Un ordre","Un conseil","Une vérité générale scientifique","Une interdiction"], a:2,
+ e:"La vérité générale est une valeur du présent de l'indicatif, pas de l'impératif."},
+
+/* ---------- PHRASE COMPLEXE & PROPOSITIONS ---------- */
+{c:'phrase', q:"Qu'est-ce qu'une proposition ?",
+ o:["Un groupe de mots organisé autour d'un verbe conjugué","Une phrase qui commence par une majuscule","Un ensemble de plusieurs phrases","Un groupe nominal uniquement"], a:0,
+ e:"À chaque verbe conjugué correspond une proposition."},
+{c:'phrase', q:"Une phrase simple comporte…",
+ o:["Plusieurs verbes conjugués","Un seul verbe conjugué (proposition indépendante)","Aucun verbe conjugué","Toujours un subordonnant"], a:1,
+ e:"Ex : « Elle viendra demain. »"},
+{c:'phrase', q:"Comment sont reliées des propositions juxtaposées ?",
+ o:["Par une conjonction de subordination","Par une virgule, un point-virgule ou deux points","Par un pronom relatif","Elles ne sont jamais reliées"], a:1,
+ e:"Ex : « Il a eu son brevet ; il avait bien travaillé. »"},
+{c:'phrase', q:"Comment sont reliées des propositions coordonnées ?",
+ o:["Par un subordonnant uniquement","Par une conjonction de coordination (mais, ou, et, donc, or, ni, car) ou un adverbe de liaison","Par une virgule uniquement","Elles ne peuvent jamais être reliées par un mot"], a:1,
+ e:"Ex : « Il a eu son brevet car il avait bien travaillé. »"},
+{c:'phrase', q:"Qu'introduit une proposition subordonnée relative ?",
+ o:["Une conjonction de coordination","Un pronom relatif (qui, que, dont, où, lequel…)","Un adverbe de temps","Un déterminant"], a:1,
+ e:"Ex : « Le livre que j'ai lu… »"},
+{c:'phrase', q:"Dans « Le livre que j'ai lu était passionnant. », quel est le rôle de « que j'ai lu » ?",
+ o:["Sujet de la phrase","Elle complète l'antécédent « le livre », comme un adjectif épithète","COD du verbe « était »","Complément circonstanciel de temps"], a:1,
+ e:"La proposition subordonnée relative apporte une information sur son antécédent."},
+{c:'phrase', q:"Quelle conjonction introduit une proposition subordonnée conjonctive complétive ?",
+ o:["qui","que","si","quand"], a:1,
+ e:"Ex : « Ses parents aimeraient qu'il travaille davantage. »"},
+{c:'phrase', q:"Quelle est la fonction la plus fréquente d'une proposition subordonnée complétive ?",
+ o:["Sujet","COD du verbe de la principale","Complément du nom","Apposition"], a:1,
+ e:"Ex : « Il affirme qu'elle ne viendra pas » → COD de « affirme »."},
+{c:'phrase', q:"Une proposition subordonnée circonstancielle de but est introduite par :",
+ o:["parce que","pour que, afin que","si bien que","alors que"], a:1,
+ e:"Ex : « Je t'accompagne pour que tu arrives à l'heure. »"},
+{c:'phrase', q:"Une proposition subordonnée circonstancielle de conséquence est introduite par :",
+ o:["si bien que, de sorte que","bien que, quoique","pour que, afin que","si, à condition que"], a:0,
+ e:"Ex : « Elle a sous-estimé son adversaire, si bien qu'elle a perdu. »"},
+
+/* ---------- LIENS LOGIQUES ---------- */
+{c:'liens', q:"Quel connecteur exprime la cause ?",
+ o:["donc","parce que","cependant","ensuite"], a:1,
+ e:"« parce que » justifie un fait, il exprime la cause."},
+{c:'liens', q:"Quel connecteur exprime la conséquence ?",
+ o:["car","donc","bien que","afin que"], a:1,
+ e:"« donc » introduit le résultat d'un fait."},
+{c:'liens', q:"Quel connecteur exprime l'opposition / la concession ?",
+ o:["en revanche","c'est pourquoi","en effet","en raison de"], a:0,
+ e:"« en revanche » marque un contraste entre deux idées."},
+{c:'liens', q:"Quel connecteur exprime le but ?",
+ o:["si bien que","afin que","car","en outre"], a:1,
+ e:"« afin que » introduit l'objectif visé, suivi du subjonctif."},
+{c:'liens', q:"« Il n'a pas eu son brevet alors qu'il a bien révisé. » Quel rapport logique exprime « alors que » ?",
+ o:["Cause","Opposition / concession","Addition","But"], a:1,
+ e:"Deux faits contradictoires coexistent : c'est une concession."},
+{c:'liens', q:"Quel connecteur exprime l'addition (une idée nouvelle) ?",
+ o:["de plus","pourtant","car","afin de"], a:0,
+ e:"« de plus » ajoute un argument supplémentaire."},
+{c:'liens', q:"Les connecteurs temporels (tout à coup, dès que, après que…) servent surtout à :",
+ o:["Introduire une démonstration mathématique","Situer les faits les uns par rapport aux autres dans un récit","Exprimer une opposition","Conclure un texte argumentatif"], a:1,
+ e:"Ils marquent l'antériorité, la simultanéité ou la postériorité des actions."},
+{c:'liens', q:"Pour introduire un exemple dans une argumentation, on peut utiliser :",
+ o:["par exemple, ainsi","néanmoins","malgré","en dépit de"], a:0,
+ e:"« par exemple » et « ainsi » servent à illustrer un argument."},
+
+/* ---------- LES MODALISATEURS ---------- */
+{c:'modal', q:"Qu'est-ce qu'un énoncé objectif ?",
+ o:["Un énoncé formulé de façon neutre, sans jugement ni sentiment","Un énoncé qui exprime toujours un doute","Un énoncé qui exprime systématiquement une certitude","Un énoncé uniquement au passé"], a:0,
+ e:"Ex : « Il est arrivé en retard. » (constat neutre)."},
+{c:'modal', q:"Qu'est-ce qu'un modalisateur ?",
+ o:["Un temps verbal du passé","Un procédé qui exprime la subjectivité de celui qui parle ou écrit","Une figure de style uniquement","Un connecteur logique"], a:1,
+ e:"Les modalisateurs traduisent un jugement, un doute ou une certitude."},
+{c:'modal', q:"Quel adverbe exprime un jugement mélioratif (positif) ?",
+ o:["malheureusement","heureusement","probablement","peut-être"], a:1,
+ e:"« heureusement » porte un jugement positif sur un fait."},
+{c:'modal', q:"Quel verbe exprime le doute ?",
+ o:["affirmer","sembler","juger","prétendre"], a:1,
+ e:"« sembler », « paraître », « croire » expriment l'incertitude."},
+{c:'modal', q:"Quel temps verbal peut exprimer l'incertitude ?",
+ o:["Le présent de l'indicatif","Le conditionnel","L'impératif","Le passé composé"], a:1,
+ e:"Ex : « Ce serait le voisin » : on n'est pas sûr."},
+{c:'modal', q:"Un suffixe comme « -âtre » (ex : verdâtre) exprime généralement…",
+ o:["Un jugement mélioratif","Un jugement péjoratif / dépréciatif","Une certitude","Une condition"], a:1,
+ e:"Les suffixes dépréciatifs comme « -âtre » dévalorisent ce qu'ils qualifient."},
+{c:'modal', q:"La ponctuation expressive (phrases exclamatives, interrogatives) sert à :",
+ o:["Exprimer un sentiment ou une subjectivité","Toujours indiquer une vérité scientifique","Marquer uniquement la fin d'un récit","Remplacer un connecteur logique"], a:0,
+ e:"« Quel tempérament ! » exprime une réaction subjective."},
+{c:'modal', q:"Une tournure impersonnelle comme « il se peut que… » exprime :",
+ o:["Une certitude absolue","L'incertitude","Un jugement mélioratif","Une habitude"], a:1,
+ e:"Ex : « Il se peut que nous ayons tort. »"},
+
+/* ---------- FIGURES DE STYLE ---------- */
+{c:'style', q:"Qu'est-ce qu'une allégorie ?",
+ o:["Une figure qui représente de façon concrète une idée abstraite","Une répétition d'un même son","Une opposition entre deux mots contradictoires","Une suite de mots séparés par des virgules"], a:0,
+ e:"Ex : la Liberté représentée par une femme dans un tableau."},
+{c:'style', q:"Qu'est-ce qu'une énumération ?",
+ o:["Une comparaison implicite","Une suite de mots séparés par des virgules, qui produit un effet d'insistance","Une exagération de la réalité","Le remplacement d'un mot par un autre lié logiquement"], a:1,
+ e:"Ex : « petits paquets, paquets moyens, gros paquets… »"},
+{c:'style', q:"Qu'est-ce qu'une métonymie ?",
+ o:["Une figure qui remplace un mot par un autre lié par un rapport logique","Une comparaison sans outil de comparaison","Une accumulation de qualificatifs","Une opposition de deux termes contraires"], a:0,
+ e:"Ex : « boire un verre » (le contenant pour le contenu)."},
+{c:'style', q:"Dans « Boire un verre », quel type de métonymie reconnaît-on ?",
+ o:["La partie pour le tout","Le contenant pour le contenu","L'objet par sa couleur","L'objet par son origine"], a:1,
+ e:"On désigne le contenu (la boisson) par son contenant (le verre)."},
+{c:'style', q:"Qu'est-ce que l'hyperbole ?",
+ o:["Une figure qui exagère, amplifie la réalité pour frapper l'imagination","Une figure qui atténue la réalité","Une répétition d'un même mot","Une comparaison implicite"], a:0,
+ e:"Ex : « Je meurs de faim ! »"},
+{c:'style', q:"Qu'est-ce que l'ironie par antiphrase ?",
+ o:["Dire littéralement ce que l'on pense","Dire le contraire de ce que l'on pense, pour se moquer ou dénoncer","Exagérer une réalité","Associer deux mots contradictoires"], a:1,
+ e:"Ex : « Quel temps magnifique ! » alors qu'il pleut."},
+{c:'style', q:"Qu'est-ce qu'un oxymore ?",
+ o:["Une figure qui associe deux termes opposés dans une même expression","Une suite de mots énumérés","Une comparaison entre deux éléments","Le remplacement d'un mot par un autre"], a:0,
+ e:"Ex : « cette obscure clarté » (Corneille)."},
+{c:'style', q:"Quelle figure reconnaît-on dans « cette obscure clarté qui tombe des étoiles » (Corneille) ?",
+ o:["Une métaphore","Un oxymore","Une hyperbole","Une métonymie"], a:1,
+ e:"« obscure » et « clarté » sont deux termes contradictoires associés."},
+{c:'style', q:"Quelle est la différence entre une comparaison et une métaphore ?",
+ o:["La métaphore utilise toujours un outil de comparaison","La comparaison utilise un outil de comparaison (comme, tel que…), pas la métaphore","Elles sont rigoureusement identiques","La métaphore ne concerne que les couleurs"], a:1,
+ e:"Ex comparaison : « belle comme un cœur » ; métaphore : « une forêt de jambes »."},
+{c:'style', q:"Une personnification consiste à :",
+ o:["Donner des caractéristiques humaines à un objet, un animal ou une idée","Remplacer un mot par un synonyme","Répéter un même son","Exagérer une réalité"], a:0,
+ e:"Ex : le verbe Avoir représenté sous une forme humaine dans une statue."},
+{c:'style', q:"La satire s'attaque aux…",
+ o:["Qualités des hommes, de façon réaliste","Vices (défauts) des hommes, d'une société ou d'une époque, dépeints de façon exagérée pour les ridiculiser","Seuls défauts physiques","Événements historiques uniquement"], a:1,
+ e:"La satire critique en exagérant pour faire rire et dénoncer."},
+{c:'style', q:"Quels procédés sont typiques du registre satirique ?",
+ o:["L'hyperbole et l'ironie","Le futur antérieur uniquement","Les liens logiques de cause uniquement","Le subjonctif imparfait"], a:0,
+ e:"Exagération et distance moqueuse sont les outils de la satire."},
+
+/* ---------- VOCABULAIRE & MÉTHODE ---------- */
+{c:'metho', q:"Qu'est-ce qu'une autobiographie ?",
+ o:["Le récit qu'un auteur fait de la vie d'un autre","Le récit qu'un auteur fait de sa propre vie et de ses souvenirs","Un texte écrit uniquement au présent","Une biographie écrite par un historien"], a:1,
+ e:"Le préfixe « auto » (soi-même) l'indique."},
+{c:'metho', q:"D'où vient le mot « autobiographie » ?",
+ o:["auto (soi-même) + bios (vie) + graphein (écrire)","auto (automobile) + bio (biologie)","Du latin « liber » (livre)","Du grec « mythos » (récit)"], a:0,
+ e:"Trois racines grecques : soi-même, vie, écrire."},
+{c:'metho', q:"Dans une autobiographie, qui sont l'auteur, le narrateur et le personnage ?",
+ o:["Trois personnes différentes obligatoirement","La même personne","L'auteur et le personnage seulement","Cela varie selon les chapitres"], a:1,
+ e:"C'est la caractéristique essentielle du pacte autobiographique."},
+{c:'metho', q:"Qu'est-ce que le point de vue interne ?",
+ o:["Quand le narrateur sait tout des personnages","Quand les choses sont vues par un personnage (verbes de perception)","Quand le narrateur est absent du texte","Quand le texte est à la 3e personne uniquement"], a:1,
+ e:"Voir, entendre, sentir : indices du point de vue interne."},
+{c:'metho', q:"Qu'est-ce que le point de vue omniscient ?",
+ o:["Quand le narrateur sait tout de ses personnages","Quand le narrateur ne connaît que ses propres pensées","Quand le texte est écrit au passé simple","Quand il n'y a pas de narrateur"], a:0,
+ e:"Le narrateur omniscient connaît pensées, passé et avenir des personnages."},
+{c:'metho', q:"Au théâtre, qu'est-ce qu'une didascalie ?",
+ o:["Une longue réplique d'un personnage","Une indication, en italique, sur la mise en scène, le décor ou le jeu des acteurs","La première scène d'une pièce","Un dialogue entre deux personnages"], a:1,
+ e:"Elle n'est pas destinée à être prononcée par les comédiens."},
+{c:'metho', q:"Qu'est-ce que la « double énonciation » au théâtre ?",
+ o:["Tout ce qui est dit sur scène s'adresse à la fois aux spectateurs et aux autres comédiens","Le fait qu'un personnage parle deux langues","La répétition d'une réplique","Le fait qu'il y ait deux narrateurs"], a:0,
+ e:"Principe fondamental du dialogue théâtral."},
+{c:'metho', q:"Dans une pièce de théâtre, qu'est-ce qu'une tirade ?",
+ o:["Une indication scénique","Une très longue réplique","Le titre d'un acte","Un dialogue très court"], a:1,
+ e:"La tirade met en valeur un personnage en lui laissant longtemps la parole."},
+{c:'metho', q:"Qu'est-ce qu'un anachronisme ?",
+ o:["Une rime répétée","Un événement ou objet situé dans une époque où il n'aurait pas pu exister","Une figure fondée sur la répétition","Une scène d'exposition"], a:1,
+ e:"Ex : une allusion à la 1ère guerre mondiale dans une pièce sur la guerre de Troie."},
+{c:'metho', q:"Pour une dictée, combien de relectures minimum sont conseillées, chacune ciblée sur un point différent ?",
+ o:["Une seule, en pensant à tout à la fois","Au moins trois","Dix","Aucune"], a:1,
+ e:"1) accords dans le GN, 2) accord sujet-verbe et participes passés, 3) sens et orthographe lexicale."},
+{c:'metho', q:"Pour une analyse d'image, qu'est-ce que la perspective ?",
+ o:["La couleur dominante du tableau","L'illusion de profondeur créée par les lignes de fuite","Le titre de l'œuvre","Le cadrage d'une photographie"], a:1,
+ e:"Les lignes de fuite convergent vers un point au fond de l'image."},
+{c:'metho', q:"Pourquoi évite-t-on de commencer une phrase de réponse par « Car » ou « Parce que » ?",
+ o:["Ce ne sont pas des mots de liaison valables","Une réponse rédigée doit reprendre les mots de la question, pas répondre par une seule subordonnée","Ces mots sont réservés à l'oral","Ils sont mal orthographiés"], a:1,
+ e:"On reformule : « Le narrateur affirme ceci car… » plutôt que de commencer par « Car… »."},
+
+/* ---------- ŒUVRES ÉTUDIÉES ---------- */
+{c:'oeuvres', q:"Qui est l'auteur de « L'Africain », récit autobiographique étudié ?",
+ o:["Albert Camus","J.M.G. Le Clézio","Victor Hugo","Annie Ernaux"], a:1,
+ e:"Le Clézio y raconte l'année passée au Nigeria auprès de son père."},
+{c:'oeuvres', q:"Qui est l'auteur de la pièce « La Guerre de Troie n'aura pas lieu » (1935) ?",
+ o:["Jean Giraudoux","Jean Anouilh","Molière","Voltaire"], a:0,
+ e:"Pièce qui modernise le mythe de la guerre de Troie, avec humour et anachronismes."},
+{c:'oeuvres', q:"L'Iliade et l'Odyssée sont attribuées à :",
+ o:["Sophocle","Homère","Euripide","Virgile"], a:1,
+ e:"Homère est un aède grec du VIIIe siècle avant J.-C."},
+{c:'oeuvres', q:"Qu'est-ce qu'une épopée ?",
+ o:["Un court poème humoristique","Un long poème chanté racontant les exploits extraordinaires d'un héros","Une pièce de théâtre comique","Un roman autobiographique"], a:1,
+ e:"Le héros y affronte des forces qui le dépassent."},
+{c:'oeuvres', q:"Dans « La Guerre de Troie n'aura pas lieu », quel personnage défend la paix face à la menace de guerre ?",
+ o:["Demokos","Hector","Busiris","Ulysse"], a:1,
+ e:"Hector revient de la guerre et a vu sa réalité terrible : il veut la paix."},
+{c:'oeuvres', q:"Quel sculpteur, associé à l'hyperréalisme, a représenté la société de consommation (« Supermarket Lady ») ?",
+ o:["Auguste Rodin","Duane Hanson","Pablo Picasso","Eugène Delacroix"], a:1,
+ e:"Duane Hanson est considéré comme le chef de file de l'hyperréalisme américain."},
+{c:'oeuvres', q:"La période des « Trente Glorieuses » (1945-1973) correspond à :",
+ o:["Une période de guerre permanente","Une forte croissance économique et le développement de la consommation de masse","Une récession profonde","Une période antérieure à la Révolution française"], a:1,
+ e:"C'est dans ce contexte que la société de consommation se développe en Europe."},
+{c:'oeuvres', q:"Dans « Solitude numérique » de Didier Daeninckx, quel défaut du personnage de Régis est tourné en ridicule ?",
+ o:["Sa générosité excessive","Son addiction obsessionnelle aux retransmissions sportives télévisées","Son incapacité à lire","Sa peur de voyager"], a:1,
+ e:"Régis s'isole peu à peu de sa femme, absorbé par le sport à la télévision."}
+];
+
+/* ============================================================
+   ÉTAT & LOGIQUE
+   ============================================================ */
+let quizSet = [];      // questions sélectionnées pour la partie en cours (préparées)
+let currentIndex = 0;
+let okCount = 0;
+let badCount = 0;
+let answered = false;
+let perChapterStats = {}; // {chapId: {ok, total}}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function countByChapter(id){
+  return QUESTIONS.filter(q => q.c === id).length;
+}
+
+/* ---- build setup screen ---- */
+const chaptersListEl = document.getElementById('chapters-list');
+CHAPTERS.forEach(ch => {
+  const row = document.createElement('label');
+  row.className = 'chap-row';
+  row.innerHTML = `
+    <input type="checkbox" checked data-chap="${ch.id}">
+    <span>${ch.label} <span class="count">(${countByChapter(ch.id)})</span></span>
+  `;
+  chaptersListEl.appendChild(row);
+});
+
+function getCheckboxes(){
+  return Array.from(document.querySelectorAll('#chapters-list input[type=checkbox]'));
+}
+
+function updatePoolNote(){
+  const selected = getCheckboxes().filter(cb => cb.checked).map(cb => cb.dataset.chap);
+  const pool = QUESTIONS.filter(q => selected.includes(q.c));
+  document.getElementById('pool-note').textContent =
+    pool.length > 0
+      ? `${pool.length} question(s) disponible(s) dans la sélection actuelle.`
+      : `Sélectionne au moins un chapitre.`;
+  document.getElementById('btn-start').disabled = pool.length === 0;
+}
+
+getCheckboxes().forEach(cb => cb.addEventListener('change', updatePoolNote));
+updatePoolNote();
+
+let allSelected = true;
+document.getElementById('btn-toggle-all').addEventListener('click', () => {
+  allSelected = !allSelected;
+  getCheckboxes().forEach(cb => cb.checked = allSelected);
+  document.getElementById('btn-toggle-all').textContent = allSelected ? 'tout désélectionner' : 'tout sélectionner';
+  updatePoolNote();
+});
+
+/* ---- start quiz ---- */
+document.getElementById('btn-start').addEventListener('click', startQuiz);
+
+function startQuiz(){
+  const selected = getCheckboxes().filter(cb => cb.checked).map(cb => cb.dataset.chap);
+  const pool = QUESTIONS.filter(q => selected.includes(q.c));
+  if(pool.length === 0) return;
+
+  const numChoice = document.getElementById('num-questions').value;
+  const n = numChoice === 'all' ? pool.length : Math.min(parseInt(numChoice, 10), pool.length);
+
+  const chosen = shuffle(pool).slice(0, n);
+  quizSet = chosen.map(prepareQuestion);
+
+  currentIndex = 0;
+  okCount = 0;
+  badCount = 0;
+  perChapterStats = {};
+  CHAPTERS.forEach(ch => perChapterStats[ch.id] = {ok:0, total:0});
+
+  document.getElementById('screen-setup').classList.add('hidden');
+  document.getElementById('screen-results').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+
+  renderQuestion();
+}
+
+function prepareQuestion(q){
+  const idxs = shuffle([0,1,2,3]);
+  const opts = idxs.map(i => q.o[i]);
+  const correctIndex = idxs.indexOf(q.a);
+  return {c:q.c, qText:q.q, opts, correctIndex, e:q.e};
+}
+
+const chapterLabel = id => (CHAPTERS.find(c => c.id === id) || {}).label || id;
+
+function renderQuestion(){
+  answered = false;
+  const total = quizSet.length;
+  const item = quizSet[currentIndex];
+
+  document.getElementById('progress-label').textContent = `Question ${currentIndex + 1}/${total}`;
+  document.getElementById('progress-fill').style.width = `${(currentIndex / total) * 100}%`;
+  document.getElementById('ok-count').textContent = okCount;
+  document.getElementById('bad-count').textContent = badCount;
+
+  document.getElementById('q-chapter').textContent = chapterLabel(item.c);
+  document.getElementById('q-text').textContent = item.qText;
+
+  const optionsEl = document.getElementById('options');
+  optionsEl.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  item.opts.forEach((optText, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.type = 'button';
+    btn.innerHTML = `<span class="letter">${letters[i]}</span><span>${optText}</span>`;
+    btn.addEventListener('click', () => selectAnswer(i, btn));
+    optionsEl.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback';
+  fb.textContent = '';
+  document.getElementById('btn-next').classList.add('hidden');
+}
+
+function selectAnswer(i, btnEl){
+  if(answered) return;
+  answered = true;
+
+  const item = quizSet[currentIndex];
+  const allBtns = Array.from(document.querySelectorAll('.opt-btn'));
+  allBtns.forEach(b => b.disabled = true);
+
+  const isCorrect = i === item.correctIndex;
+  perChapterStats[item.c].total++;
+
+  if(isCorrect){
+    okCount++;
+    perChapterStats[item.c].ok++;
+    btnEl.classList.add('correct');
+  } else {
+    badCount++;
+    btnEl.classList.add('wrong');
+    allBtns[item.correctIndex].classList.add('correct');
+  }
+
+  document.getElementById('ok-count').textContent = okCount;
+  document.getElementById('bad-count').textContent = badCount;
+
+  const fb = document.getElementById('feedback');
+  fb.classList.add('show', isCorrect ? 'good' : 'bad');
+  const mark = isCorrect ? '✓' : '✗';
+  const lead = isCorrect ? 'Exact !' : 'Pas tout à fait.';
+  fb.innerHTML = `<span class="mark">${mark}</span>${lead} ${item.e || ''}`;
+
+  document.getElementById('btn-next').classList.remove('hidden');
+}
+
+document.getElementById('btn-next').addEventListener('click', () => {
+  currentIndex++;
+  if(currentIndex >= quizSet.length){
+    showResults();
+  } else {
+    renderQuestion();
+  }
+});
+
+function showResults(){
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-results').classList.remove('hidden');
+
+  const total = quizSet.length;
+  const pct = total > 0 ? okCount / total : 0;
+  const note20 = Math.round(pct * 20 * 10) / 10;
+
+  document.getElementById('grade-stamp').textContent = `${note20}/20`;
+
+  let appreciation;
+  if(pct >= 0.9) appreciation = "Excellent ! Tu maîtrises bien ces notions.";
+  else if(pct >= 0.75) appreciation = "Très bien, encore quelques détails à revoir.";
+  else if(pct >= 0.5) appreciation = "Pas mal, continue à réviser.";
+  else appreciation = "Reprends ton cours sur les points ratés, tu vas progresser.";
+  document.getElementById('appreciation').textContent = appreciation;
+
+  document.getElementById('results-detail').textContent =
+    `${okCount} bonne(s) réponse(s) sur ${total}.`;
+
+  const breakdownEl = document.getElementById('breakdown');
+  breakdownEl.innerHTML = '';
+  CHAPTERS.forEach(ch => {
+    const stat = perChapterStats[ch.id];
+    if(!stat || stat.total === 0) return;
+    const ratio = stat.ok / stat.total;
+    const row = document.createElement('div');
+    row.className = 'breakdown-row';
+    row.innerHTML = `
+      <span>${ch.label}</span>
+      <span class="bar-bg"><span class="bar-fill" style="width:${ratio*100}%"></span></span>
+      <span>${stat.ok}/${stat.total}</span>
+    `;
+    breakdownEl.appendChild(row);
+  });
+}
+
+document.getElementById('btn-restart').addEventListener('click', () => {
+  document.getElementById('screen-results').classList.add('hidden');
+  document.getElementById('screen-setup').classList.remove('hidden');
+});
+</script>
 </body>
 </html>
